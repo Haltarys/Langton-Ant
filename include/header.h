@@ -6,48 +6,38 @@
 */
 
 #ifndef HEADER_H_
-	#define HEADER_H_
+#define HEADER_H_
 
-    #include <stdlib.h>
-    #include <unistd.h>
-    #include <stdio.h>
-    #include <time.h>
-    #include <ncurses.h>
+static const int X = 0;
+static const int Y = 1;
+static const int WHITE = 0;
+static const int BLACK = 1;
+static const int SLEEP = 1000000;
 
-    #define X 0
-    #define Y 1
-    #define WHITE 0
-    #define BLACK 1
-    #define SLEEP 1000
+enum directions_id
+{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST
+};
 
-    enum directions
-    {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST
-    };
+typedef struct langton
+{
+    int width;
+    int height;
+    char **grid;
+    int x;
+    int y;
+    int direction;
+    int turns;
+} langton_t;
 
-    typedef struct langton
-    {
-        int width;
-        int height;
-        char **grid;
-        int x;
-        int y;
-        enum directions direction;
-        int turns;
-    } langton_t;
-
-    langton_t *init_langton(int width, int height,
-        int black_chance, enum directions direction);
-
-    void destroy_langton(langton_t *langton);    
-
-    void print_langton(langton_t *langton);
-
-    void move_ant(langton_t *langton);
-
-    int pause_loop(void);
+void langton(int width, int height, int black_chance, int direction);
+langton_t *init_langton(int width, int height, int black_chance, int direction);
+void destroy_langton(langton_t *langton);
+void print_langton(langton_t *langton);
+void move_ant(langton_t *langton);
+int pause_loop(void);
 
 #endif /* !HEADER_H_ */
