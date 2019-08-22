@@ -1,10 +1,3 @@
-##
-## EPITECH PROJECT, 2019
-## langton
-## File description:
-## Makefile for the langton project
-##
-
 SRC	=	src/main.c	\
 		src/langton.c	\
 		src/print.c	\
@@ -31,4 +24,3 @@ fclean: clean
 		rm -f $(NAME)
 
 re: fclean all
-#-Wextra
